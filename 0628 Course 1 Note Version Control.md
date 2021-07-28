@@ -1,4 +1,4 @@
-# 0628 Course 1 Note
+# 0628 Course 1 Note Version Control
 
 View the Notes with HackMD.
 
