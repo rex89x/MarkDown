@@ -78,7 +78,7 @@ http://www.dotblogs.com.tw/hatelove/archive/2009/09/17/10686.aspx
 - 修改Global.asax.cs 以後使用時輸入 原本是 System.Web.(應用程式名稱) Spring.Web.Mvc.(應用程式名稱)
 - 調整Web.config 加入 Spring區段
 
-{
+```html
 <configSections>
 <sectionGroup name="spring">
   <section name="context" type="Spring.Context.Support.MvcContextHandler, Spring.Web.Mvc5" />
@@ -86,19 +86,21 @@ http://www.dotblogs.com.tw/hatelove/archive/2009/09/17/10686.aspx
   <section name="parsers" type="Spring.Context.Support.NamespaceParsersSectionHandler, Spring.Core" />
 </sectionGroup>
 </configSections>
-}
+```
   
 - 調整Web.config 加入
 
-{
+```
 <spring>
 <context>
   <resource uri="file://~/spring-config\objects.xml" />
 </context>
 </spring>
-}
+```
   
 - 撰寫Spring設定檔 在MVC專案新增資料夾 spring-config (裡面新增檔名objects.xml)
+
+```
 <?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
 
@@ -119,6 +121,7 @@ http://www.dotblogs.com.tw/hatelove/archive/2009/09/17/10686.aspx
   <object id="EmployeeDao" type="eHR.Dao.EmployeeTestDao,eHR.Dao"/>
 
 </objects>
+```
 
 - 之後設定object.xml時 透過專案點右鍵 -> 屬性 -> 應用程式 可以查看名稱 命名空間
 - MVC專案 Nuget安裝 Microsoft.AspNet.WebApi 套件
