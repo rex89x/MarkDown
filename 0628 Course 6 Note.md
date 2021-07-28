@@ -1,4 +1,4 @@
-# 0628 Course 6 Note
+# 0628 Course 6 Note DotNet
 
 View the .Net MVC Fronted End Notes with HackMD.
 
