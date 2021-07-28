@@ -1,4 +1,4 @@
-# 0628 Course 2 Note
+# 0628 Course 2 Note SQL
 
 View the Notes with HackMD.
 
