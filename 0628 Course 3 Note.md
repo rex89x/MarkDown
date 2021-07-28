@@ -9,15 +9,22 @@ Kendo UI DropDownList
 - dataTextField(傳遞data內部欄位)
 - dataValueField(傳遞data內部欄位)
 - dataSource()
+
+```javascript
 let data = {
     {text:(name1), value:(value1)},
     {text:(name2), value:(value2)},
     {text:(name3), value:(value3)},
     .....
 }
+```
+
 - index(指向第幾選項)
 - change
+
+```javascript
 var Index = document.querySelector("")
+```
 
 Kendo UI DatePicker
 ---
@@ -28,7 +35,10 @@ Kendo UI DatePicker
 
 - index(指向第幾選項)
 - change
+
+```javascript
 var Index = document.querySelector("")
+```
 
 JS CHANGE HTML ATTRIBUTE
 ---
@@ -45,6 +55,8 @@ JS Switch Case
 ---
 
 - switch (var) { case (condition): statement; break ..... }
+
+```javascript
 switch (var) { case (condition): 
                     statement; 
                     break;
@@ -53,12 +65,15 @@ switch (var) { case (condition):
                     break;
                     ..............
              }
+```
 
 
 KendoWindow
 ---
 
 - SetKendoWindow()
+
+```javascript
 {$("#dialog").kendoWindow({
         visible: false,
         height: "530px",
@@ -76,12 +91,14 @@ KendoWindow
 
 let dialog = $("#dialog").data("kendoWindow");
 dialog.open();}
+```
 
 KendoGrid
 ---
 
 - dataSource: 
-'''
+
+```javascript
 dataSource: {
     data: bookDataFromLocalStorage,
     schema: {
@@ -96,20 +113,28 @@ dataSource: {
     },
     pageSize: 20, (每頁幾筆資料)
 },
-'''
+```
+
 - toolbar: 
-'''
+
+```javascript
 kendo.template("<div class='book-grid-toolbar'><input class='book-grid-search' placeholder='我想要找......' type='text'></input></div>"),
-'''
+```
 
 - height: 550, (視窗大小)
 - sortable: true, (是否排序)
 - pageable: (如何分頁)
+
+```javascript
 pageable: {
     input: true,
     numeric: false
 },
+```
+
 - columns: 
+
+```javascript
 [
             { field: "BookId", title: "書籍編號",width:"10%"},
             { field: "BookName", title: "書籍名稱", width: "50%" },
@@ -118,6 +143,7 @@ pageable: {
             { field: "BookBoughtDate", title: "購買日期", width: "15%" },
             { command: { text: "刪除", click: deleteBook }, title: " ", width: "120px" }
 ]
+```
 
 
 Button Click
@@ -126,13 +152,17 @@ Button Click
 - id在JS code 裡面寫 $("#name")
 - class在 JS code 裡面寫 $(".name")
 - click Function
+
+```javascript
 $("#Insert-Button").click(function(){
     CreateBook();
 });
+```
 
 Kendo Grid Dynamic Search
 ---
 
+```javascript
 $(".book-grid-search").on("input", function(){
         let GetSearchName = $(this).val();
 
@@ -147,22 +177,26 @@ $(".book-grid-search").on("input", function(){
         ]
     });
 });
+```
 
 DropDownList onChange
 ---
 
-- //find index
+```javascript
+//find index
 let Index = document.querySelector(".book-image")
-- //get value
+//get value
 let GetOnChangeValue = $("#book_category").val()
-- //set url
+//set url
 GetOnChangeValue = "image/" + GetOnChangeValue + ".jpg";
-- //set html src url
+//set html src url
 Index.setAttribute("src", GetOnChangeValue)
+```
 
 Delete KendoGrid Item
 ---
 	
+```javascript
 // 防止滾動
 index.preventDefault();
 let Target = $("#book_grid").data("kendoGrid");
@@ -176,20 +210,24 @@ function deleteLocalStorageBook(GetRowDeleteStorage){
     // loadbookdata
     localStorage.setItem("bookData", JSON.stringify(GetRowDeleteStorage));
 }
+```
 
 KendoDatePicker
 ---
 
-{$("#bought_datepicker").kendoDatePicker({
+```javascript
+$("#bought_datepicker").kendoDatePicker({
         componentType: "modern",
         format: "yyyy/MM/dd",
         value: new Date(),
-    });}
+    });
+```
 
 Kendo Confirm
 ---
 
-{kendo.confirm("你確定要刪除嗎?")
+```javascript
+kendo.confirm("你確定要刪除嗎?")
         .done(function () {
             index.preventDefault();
             let Target = $("#book_grid").data("kendoGrid");
@@ -202,7 +240,8 @@ kendo.alert("刪除完成");
         })
         .fail(function () {
             kendo.alert("取消刪除");
-        });}
+        });
+```
 
 Kendo Alert
 ---
@@ -217,14 +256,17 @@ JavaScript getElementById
 JavaScript ChangeDateTime Format
 ---
 
-{    var RightNow = new Date();
+```javascript
+    var RightNow = new Date();
     var RightNowString = RightNow.toISOString().slice(0, 10).replace(/-/g, "/");
-    document.getElementById("bought_datepicker").value = RightNowString;}
+    document.getElementById("bought_datepicker").value = RightNowString;
+```
     
 Get LocalStorage Json
 ---
 
-{function GetMaxBookId() {
+```javascript
+function GetMaxBookId() {
     let MaxNumber = 0;
     for (let i = 0; i < bookDataFromLocalStorage.length; i++) {
         if (parseInt(bookDataFromLocalStorage[i].BookId, 10) > MaxNumber) {
@@ -232,23 +274,28 @@ Get LocalStorage Json
         }
     }
     return MaxNumber;
-}}
+}
+```
     
 Create Book Into Grid
 ---
 
-{function CreateNewBookIntoGrid(NewBook) {
+```javascript
+function CreateNewBookIntoGrid(NewBook) {
     let gridDataSource = $("#book_grid").data("kendoGrid").dataSource;
     gridDataSource.add(NewBook);
     gridDataSource.sync();
-}}
+}
+```
     
 Create Record to LocalStorage
 ---
 
-{function WriteDataIntoLocalStorage(bookDataFromLocalStorage) {
+```javascript
+function WriteDataIntoLocalStorage(bookDataFromLocalStorage) {
     localStorage.setItem("bookData", JSON.stringify(bookDataFromLocalStorage));
-}}
+}
+```
 
 
 Rex Tsou 2021/06/28
