@@ -30,7 +30,9 @@ Create Model In Visual Studio
 
 - Model資料夾按右鍵加入類別 (名字自己取)
 - 類別裡面可以寫一個方法 
-model範例
+
+```csharp
+// model範例
 {
     public class HelloWorldBusiness
     {
@@ -40,8 +42,12 @@ model範例
         }
     }
 }
+```
+
 - 在controller裡面 ActionResult Index() 引用你要用的model
-Controller內部程式引用model 範例
+
+```csharp
+// Controller內部程式引用model 範例
 {
 public class DefalutController : Controller
     {
@@ -54,7 +60,9 @@ public class DefalutController : Controller
         }
     }
 }
+```
 
+```csharp
 {
 // 提供員工資料增刪改查的服務
 public class EmployeeService
@@ -80,9 +88,12 @@ public class EmployeeService
         return result;
     }
 }
+```
 
 
 - Controller呼叫 Model
+
+```csharp
 public ActionResult Index()
 {
     Models.EmployeeService employeeService = new Models.EmployeeService();
@@ -97,15 +108,17 @@ public ActionResult Index()
     
     return View();
 }
-}
+```
 
 
 View 顯示ViewBag方式
 ---
 
+```htmlmixed=
 {
 @ViewBag.EmpAdd
 }
+```
 
 - 開發操作人員的Model
 TIP: MS SQL Server 選取資料表按 ALT+F1 可以看到欄位型態
@@ -163,7 +176,9 @@ Routing
 
 - 目錄檔案在哪裡 ASP.NET URL呈現:localhost:XXXX/folder/file
 - URL命名方式 (以下範例)  URL呈現:localhost:XXXX/Default/Index
-範例
+
+```csharp
+// 範例
 public class DefaultController : Controller
 {
     public ActionResult Index()
@@ -172,14 +187,21 @@ public class DefaultController : Controller
         return View();
     }
 }
+```
+
 - 在App_Start資料夾裡面的 RouteConfig.cs 命名規則
+
+```csharp
 routes.MapRoute(
     name: "Default",
     url: "{controller}/{action}/{id}",
     defualts: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 );
+```
 
 - 命名範例 URL: localhost:XXXX/Default/Index2
+
+```csharp
 public class DefaultController : Controller
 {
     public ActionResult Index2()
@@ -188,8 +210,11 @@ public class DefaultController : Controller
         return View();
     }
 }
+```
 
 - id命名範例 URL: localhost:XXXX/About/Index/Rex
+
+```csharp
 public class AboutController : Controller
 {
     public ActionResult Index(string id)
@@ -198,7 +223,7 @@ public class AboutController : Controller
         return View();
     }
 }
-
+```
 
 Area
 --- 
@@ -221,12 +246,15 @@ public ActionResult Index(FormCollection form) //Collection 陣列物件
 - Action Result 常用的
 ViewResult 呈現指定或是預設的View      Controller Helper Methods : View
 JsonResult 將.net物件序列化成Json格式並回傳   Controller Helper Methods : Json
-範例程式碼:
+
+```csharp
+// 範例程式碼:
 public JsonResult TestJsonResult()  URL: localhost:XXXX/order/TestJsonResult
 {
     Models.OrderService service = new Models.OrderService();
     return this.Json(service.GetOrderById(), JsonRequestBehavior.AllowGet);
 }
+```
 
 Models 引入參考
 ---
@@ -234,6 +262,8 @@ Models 引入參考
 - using System.ComponentModel.DataAnnotations;
 - using System.ComponentModel;
 - 定義驗證屬性
+
+```csharp
 public class Order
 {
     [DisplayName("訂單編號")]
@@ -244,7 +274,7 @@ public class Order
     [DisplayName("客戶代號")]
     public string CustId (get;set;)
 }
-
+```
 
 Controller ActionResult
 ---
@@ -252,6 +282,7 @@ Controller ActionResult
 - Index反白 新增檢視 可以挑選你需要的範本 EX:INSERT 選擇 Create範本 模型類別: 你需要用到的Model 按下加入完成
 - 如果要新增東西的FORM    INDEX沒有加上 [HttpPost()] 的話有可能新增會出現問題
 	
+```javascript
 // 防止滾動
 index.preventDefault();
 let Target = $("#book_grid").data("kendoGrid");
@@ -265,6 +296,7 @@ function deleteLocalStorageBook(GetRowDeleteStorage){
     // loadbookdata
     localStorage.setItem("bookData", JSON.stringify(GetRowDeleteStorage));
 }
+```
 
 View
 ---
@@ -275,7 +307,9 @@ EditFor
 *String => text
 *bool   => checkbox
 
+```htmlmixed
 @Html.EditorFor(model => model.JobTitleName, new { htmlAttributes = new { @class = "form-control" } })
+```
 
 - Html.TextBoxFor   // 盡量使用這個   // WorkShop將 EditorFor換成 TextBoxFor
 TextBoxFor
@@ -283,7 +317,9 @@ TextBoxFor
 *可以指定Type(date, datetime)
 *不能使用 htmlAttributes
 
+```htmlmixed=
 @Html.TextBoxFor(model => model.JobTitleName, new { @class = "form-control"})
+```
 
 Html Helper
 ---
@@ -296,6 +332,8 @@ Html Helper
 *送出後直接Mapping Action的參數
 
 - Model寫某一欄位是必須要的值
+
+```csharp
 namespace ViewHtmlHelper.Models
 {
     public class Employee
@@ -304,12 +342,19 @@ namespace ViewHtmlHelper.Models
         public string EmployeeNo { get; set; }
     }
 }
+```
+
 - 在Controller裡面判斷欄位是否合法
+
+```csharp
 if (ModelState.IsValid){}
+```
 
 DropDownList
 ---
 - DropDownList程式範例 (在Controller)
+
+```csharp
 List<SelectListItem> (name) = new List<SelectListItem>();
 jobTitleData.Add(new SelectListItem()
 {
@@ -321,7 +366,11 @@ jobTitleData.Add(new SelectListItem()
     Value = "SA",
     Text = "系統分析師"
 });
+```
+
 - View (cshtml檔案)
+
+```htmlmixed
 <div class="form-group">
     @Html.LabelFor(model => model.JobTitleName, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
@@ -329,15 +378,21 @@ jobTitleData.Add(new SelectListItem()
         @Html.LabelFor(model => model.JobTitleCode, "", new { @class = "text-danger" })
     </div>
 </div>
+```
 
+- Controller
+
+```csharp
 ViewBag.JobTitleData = jobTitleData;
 return View(employee);
-
+```
 
 Ajax
 ---
 
 - Ajax Get
+
+```javascript
 $("#btnAjaxGet").click(function (e)) {
     e.preventDefault();
     $.ajax({
@@ -353,8 +408,11 @@ $("#btnAjaxGet").click(function (e)) {
         }
     });
 }
+```
 
 - JsonResult
+
+```csharp
 [HttpGet()]
 public JsonResult AjaxGet(string arg)
 {
@@ -364,8 +422,11 @@ public JsonResult AjaxGet(string arg)
     
     return this.Json(result, JsonRequestBehavior.AllowGet);
 }
+```
 
 - Ajax POST
+
+```javascript
 $("#btnAjaxPost").click(function (e)) {
     e.preventDefault();
     var postBody = {
@@ -385,8 +446,11 @@ $("#btnAjaxPost").click(function (e)) {
         }
     });
 }
+```
 
 - JsonResult
+
+```csharp
 [HttpPost()]
 public JsonResult AjaxPost(Models.AjaxPostArg arg)
 {
@@ -396,6 +460,7 @@ public JsonResult AjaxPost(Models.AjaxPostArg arg)
     
     return this.Json(result);
 }
+```
 
 
 ADO.NET
@@ -408,6 +473,8 @@ User ID = sa;                // 帳號
 PassWord = tds655;          // 密碼
 
 - 建立連線
+
+```csharp
 //連線字串
 string connStr = @"Data Source = (PC-SQLexpress); Initial Catalog = TSQL2012; User ID = sa; Password = gss";
 //建立Connection物件
@@ -420,17 +487,26 @@ SqlDataAdapter dataAdapter = new SqlDataAdapter(sql, conn);
 Dataset ds = new DataSet();
 //填入資料
 dataAdapter.Fill(ds);
+```
 
 - 正確應該選用
+
+```csharp
 string sql = "SELECT * FROM [HR].[Employees] WHERE EmployeeID = @EmployeeID";
 SqlCommand cmd = new SqlCommand(sql, conn);
 cmd.Parameters.Add(new SqlParameter("@EmployeeID", this.textBox.Text));
+```
 
 - DataTable
+
+```csharp
 DataTable dtEmp = ds.Tables[0];
 DataTable dtCustomer = ds.Tables[1];
+```
 
 - INSERT SQL 語法
+
+```csharp
 string sql = @"INSERT INTO [Sales].[Shippers] (CompanyName, Phone) Values(@CompanyName, @Phone) SELECT SCOPE_IDENTITY()";
 
 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -442,8 +518,11 @@ conn.Open();
 int newId = Convert.ToInt32(cmd.ExecuteScalar());
 
 conn.Close();
+```
 
 - TRANSACTION SQL 語法
+
+```csharp
 string sql = @"DELETE FROM [Sales].[Shippers] WHERE ShipperID = @ShipperID";
 
 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -473,6 +552,7 @@ finally
     //最後把連線關閉
     conn.Close();
 }
+```
 
 
 實作注意
@@ -483,15 +563,20 @@ finally
 
 -在App.config/Web.config 設定連線字串
 
+```htmlmixed
 <connectionStrings>
     <add name="Default" connectionString="Data Source = (PC-SQLexpress); Initial Catalog = TSQL2012; User ID = sa; Password = gss" />
 </connectionStrings>
+```
 
 -在程式內取得連線字串
+
+```csharp
 private string GetConnStr()
 {
     return System.Configuration.ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
 }
+```
 
 
 SQL 連線 額外參考網站
