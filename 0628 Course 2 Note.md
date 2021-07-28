@@ -16,9 +16,11 @@ SSMS 設定定序
 SQL 指定 COLLATE
 ---
 
+```sql
 SELECT * FROM Person.Address
 WHERE AddressLine1 COLLATE Chinese_Taiwan_Bopomofo_90_CS_AI
 LIKE '1970napa%'
+```
 
 重建系統資料庫
 ---
@@ -78,11 +80,16 @@ SELECT 查詢順序
 TOP
 ---
 	
+```sql
 SELECT TOP (num) 
+```
 
 - Group By 重複仍會顯示出來
+
+```sql
 SELECT TOP (num) WITH TIES 
 GROUP BY 
+```
 
 取DATETIME
 ---
@@ -108,6 +115,7 @@ PIVOT 列 轉 欄 (數字分組加總)
 - COALESCE((Condition), (例外則))
 - PIVOT(SUM(Cnt) FOR (View表SELECT之值) IN (CONDITION) )
 
+```sql
 SELECT ClassId,
        ClassName,
        COALESCE([2016], 0) AS CNT2016,
@@ -120,6 +128,7 @@ PIVOT(
     FOR Year IN ([2016], [2017], [2018], [2019])
 ) AS PV
 ORDER BY ClassId
+```
 
 合併欄位
 ---
@@ -133,6 +142,8 @@ CROSS APPLY JOIN
 ---
 - TRY 裡面 包TRANSACTION
 - INSERT
+
+```sql
 BEGIN TRY
 	BEGIN TRANSACTION;
 		INSERT INTO BOOK_LEND_RECORD(KEEPER_ID, BOOK_ID, LEND_DATE)
@@ -144,8 +155,11 @@ BEGIN CATCH
       ROLLBACK TRAN;
       THROW;
 END CATCH
+```
 
 - UPDATE
+
+```sql
 BEGIN TRY
 	BEGIN TRANSACTION;
 		UPDATE BOOK_LEND_RECORD
@@ -158,8 +172,11 @@ BEGIN CATCH
       ROLLBACK TRAN;
       THROW;
 END CATCH
+```
 
 - DELETE
+
+```sql
 BEGIN TRY
 	BEGIN TRANSACTION;
 		DELETE FROM dbo.BOOK_LEND_RECORD
@@ -171,7 +188,7 @@ BEGIN CATCH
       ROLLBACK TRAN;
       THROW;
 END CATCH
-
+```
 
 
 
