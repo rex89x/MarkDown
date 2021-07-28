@@ -57,7 +57,7 @@ VB.NET Dynamic Search on Oracle Database
 
 ### aspx.vb
 
-```
+```vb
 Private Sub SaveAction()
     Dim strSQL As String
     Dim objDV As DataView
@@ -75,7 +75,7 @@ VB.NET TABLE Code
 ---
 
 ### Table
-```
+```vb
 <TABLE style="TABLE-LAYOUT: fixed" cellSpacing="0" cellPadding="0" width="100%" border="0">
     <TR>
         <TD align="left">
@@ -107,7 +107,7 @@ HTML 字元符號
 全形的空格, 特性為寬度為1個中文字寬度
 
 ### Sample Code
-```
+```htmlmixed
 <div>
     // 額外補充寫法 <span class="emsp"></span>
     <ul>
