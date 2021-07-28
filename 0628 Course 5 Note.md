@@ -9,6 +9,8 @@ Ajax
 - SPA(Single Page Application)
 - HTTP Method
 - Object and Array
+
+```javascript
 var obj = {aaa: "1234"}
 var list = {"123", "456"}
 - Method:POST/GET
@@ -23,6 +25,7 @@ $.ajax({
 }).fail(function (XHR){
     //送出失敗
 });
+```
 
 - 傳統的Web Site採取(Multi-page) 做法
 - 現在的Web Site轉移到 SPA 的觀念
@@ -31,17 +34,25 @@ $.ajax({
 *Backbone.js Angular.js ... etc
 
 - Sample Ajax Code (Controller端)
+
+```csharp
 [HttpPost]
 public JsonResult GetTestData(string testString){
     return Json(testString + "call Ajax success!!");
 }
+```
 
 - Sample Ajax Code (cshtml端)
+
+```htmlmixed
 <h2 id="demo_input" type="text" name="name" value="" />
 <input id="demo_input" type="text" name="name" value="" />
 <button id="btn_call_ajax">CALL AJAX</button>
+```
 
 - Sample Ajax Code (JavaScript端)
+
+```javascript
 $("#btn_call_ajax").click(function() {
     $.ajax({
         url: "GetTestData",
@@ -52,20 +63,30 @@ $("#btn_call_ajax").click(function() {
         $("#demo_result").text(data);
     })
 });
+```
 
 - Sample DropDownList Ajax Code (controller端)
+
+```csharp
 public JsonResult GetDropDownListData(){
     List<string> tempData = new List<string>();
     tempData.Add("項目一");
     tempData.Add("項目二");
     return Json(tempData);
 }
+```
 
 - Sample DropDownList Ajax Code (cshtml端)
+
+```htmlmixed
 <select id="demo_select"></select>
 <button id="btn_demo_select"></button>
+```
+
 
 - Sample DropDownList Ajax Code (JavaScript端) 
+
+```javascript
 $("#btn_demo_select").click(function (){
     $("#demo_select").kendoDropDownList({
         dataSource: {
@@ -79,8 +100,11 @@ $("#btn_demo_select").click(function (){
         }
     })
 })
+```
 
 - Data Binding (Model端)
+
+```csharp
 namespace BookMaintenance.Models{
     public DemoModel(string id, string name){
         this.Id = id;
@@ -91,8 +115,11 @@ namespace BookMaintenance.Models{
         public string Name { get; set; }
     }
 }
+```
 
 - Data Binding (Controller端)
+
+```csharp
 public JsonResult GetGridData(){
     List<DemoModel> tempData = new List<DemoModel>();
     tempData.Add(new DemoModel("1", "資料庫設計"));
@@ -100,8 +127,11 @@ public JsonResult GetGridData(){
     tempData.Add(new DemoModel("3", "資料庫設計3"));
     return Json(tempData);
 }
+```
 
 - Data Binding (cshtml端)
+
+```htmlmixed
 <div id="demo_grid"></div>
 <button id="btn_get_grid_data">GET GRID DATA</button>
 
@@ -125,12 +155,18 @@ public JsonResult GetGridData(){
         })
     });
 </script>
+```
 
 - auto_complete_input (cshtml端)
+
+```htmlmixed
 <input id="demo_auto_complete_input", type="text", name="name" value="" />
 <button id="btn_demo_auto_complete">Get AutoComplete Data</button>
+```
 
 - auto_complete_input (Controller端)
+
+```csharp
 [HttpPost]
 public JsonResult GetAutoCompleteData(){
     List<string> tempData = new List <string> ();
@@ -140,8 +176,11 @@ public JsonResult GetAutoCompleteData(){
     tempData.Add("JavaScript");
     return Json(tempData);
 }
+```
 
 - auto_complete_input (JavaScript端)
+
+```javascript
 $("#btn_demo_auto_complete").click(function () {
     $("#demo_auto_complete_input").kendoAutoComplete({
         dataSource: {
@@ -155,7 +194,7 @@ $("#btn_demo_auto_complete").click(function () {
         }
     });
 });
-
+```
  
 
 
