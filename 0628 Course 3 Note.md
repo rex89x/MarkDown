@@ -1,4 +1,4 @@
-# 0628 Course 3 Note
+# 0628 Course 3 Note JavaScript
 
 View the Notes with HackMD.
 https://ithelp.ithome.com.tw/articles/10203758
