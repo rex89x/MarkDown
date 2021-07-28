@@ -21,11 +21,14 @@ KendoUI Use Sample
 
 - Button
 
+```javascript=
 $(".class").kendoButton();
 $("#id").kendoButton();
+```
 
 - kendoWindow
 
+```javascript
 $("#id").kendoWindow({
     visible: false,
     height: "xxxpx",
@@ -45,9 +48,11 @@ $("#id").kendoWindow({
 $("#button").click(function(){
     $("#id").data("kendoWindow").open();
 });
+```
 
 - DropDownList
 
+```javascript
 var dropDownListData = [
     { text: "1", value: "1" },
     { text: "2", value: "2" },
@@ -62,17 +67,21 @@ $("#id").kendoDropDownList({
     index: 0,
     change: changeFunction
 });
+```
 
 - DatePicker
 
+```javascript
 $("#id").kendoDatePicker({
     componentType: "modern",
     format: "yyyy/MM/dd",     // 日期格式
     value: new Date()         // 現在日期
 });
+```
 
 - kendoGrid
 
+```javascript
 $("#id").kendoGrid({
     sort: { field: "column", dir: "asc" },
     dataSource: {
@@ -103,15 +112,17 @@ $("#id").kendoGrid({
         { field: "col4", title: "col4", width: "25%" }
     }
 });
+```
 
 - kendoValidator
 
+```javascript
 $("#id").click(function(){
     $("#id").kendoValidator().data("kendoValidator").validate();
     // if correct return true, if incorrect return false
     
 })
-
+```
 
 
 
